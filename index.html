@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>My First Grid</title>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.9.2.custom.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+
+        <script type="text/ecmascript" src="js/jquery.js"></script> 
+        <!-- This is the Javascript file of jqGrid -->   
+        <script type="text/ecmascript" src="js/jquery.jqGrid.min.js"></script>
+        <!-- This is the localization file of the grid controlling messages, labels, etc.
+        <!-- We support more than 40 localizations -->
+        <script type="text/ecmascript" src="js/i18n/grid.locale-en.js"></script>
+
+
+        <script type="text/javascript">
+            $(function() {
+                $("#list").jqGrid({
+                    url: "datalist.php",
+                    editurl: "editdata.php",
+                    
+                    datatype: "json",
+                    mtype: "GET",
+                    colNames: ["Id", "Name", "URl", "Regional"],
+                    colModel: [
+                        {name: "id", sortable: true, index: "id", edittype: "text", editable: false},
+                        {name: "name", sortable: true, index: "name", edittype: "text", editable: true},
+                        {name: "url", align: "left", sortable: false, index: "url", edittype: "text", editable: true},
+                        {name: "regional", align: "left", sortable: false, index: "regional", edittype: "text", editable: true}
+                    ],
+//                    multikey: "ctrlKey", select  row using ctrl key
+                    pager: "#pager",
+                    rowNum: 5,
+                    rownumbers: true,
+                    rowList: [5, 10, 15],
+                    height: 'auto',
+                    width: '1000',
+                    loadonce: false,
+                    caption: "My first grid",
+                    forceFit: true,
+                    cellEdit: true,
+                    cellsubmit: 'remote',
+                    cellurl: 'editcell.php',
+                    multiselect:true
+                });
+                jQuery("#list").jqGrid(
+                        'navGrid',
+                        '#pager',
+                        {edit: true, add: true, del: true, search: true},
+                {
+                },
+                 {
+                 },
+                {
+                }
+//                {multipleSearch:true}
+//                {
+//                     sopt: ["lt"]
+//                }
+                );
+        jQuery("#list").jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+            });
+//  edittype: "select", editoptions: {dataUrl: "../ajax/selects/cargar_select_perfiles.php"}
+//not show in edit or add form --> hidden: true,editrules: {edithidden: true}
+        </script>
+
+    </head>
+    <body>
+        <table id="list"><tr><td></td></tr></table> 
+        <div id="pager"></div> 
+    </body>
+</html>

@@ -1,4 +1,4 @@
 jqgrid
 ======
 
-My first repository on github
+This is demo project to learn jqgrid
